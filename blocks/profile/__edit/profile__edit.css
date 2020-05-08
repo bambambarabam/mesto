@@ -9,3 +9,9 @@
   padding: 0;
   margin-left: 17px;
 }
+
+@media all and (max-width: 1080px) {
+  .profile__edit {
+    margin: 0;
+  }
+}
