@@ -1,0 +1,19 @@
+.popup__toggle {
+  position: absolute;
+  top: -45px;
+  right: -45px;
+  cursor: pointer;
+  transition: all 1s linear .1s;
+}
+
+.popup__toggle:hover {
+  opacity: 0.6;
+  transform: rotate(45deg);
+}
+
+@media all and (max-width: 620px) {
+  .popup__toggle {
+    top: -50px;
+    right: auto;
+  }
+}

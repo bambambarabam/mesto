@@ -8,6 +8,12 @@
   font-size: 40px;
   padding: 0;
   margin: 35px 0 0 auto;
+  cursor: pointer;
+  transition: opacity 1s linear .1s;
+}
+
+.profile__button:hover {
+  opacity: .6;
 }
 
 @media all and (max-width: 1080px) {
