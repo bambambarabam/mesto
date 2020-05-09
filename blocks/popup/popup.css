@@ -8,7 +8,7 @@
 @import url(./__name/popup__name.css);
 
 .popup {
-  min-width: 100%;
+  min-width: 1280px;
   min-height: 100%;
   position: fixed;
   top: 0;
