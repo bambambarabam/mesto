@@ -12,11 +12,15 @@
 </head>
 
 <body class="root">
+  <!-- Здесь начинается страница сайта -->
   <div class="page">
+
     <header class="header">
       <img src="./images/logo.svg" class="header__logo" alt="Логотип.">
     </header>
+    <!-- Выше расположен хэдер -->
     <main class="content">
+
       <section class="profile">
         <img src="./images/Avatar.jpg" class="profile__avatar" alt="Аватар пользователя.">
         <div class="profile__info">
@@ -24,78 +28,85 @@
             <h1 class="profile__title">Жак-Ив Кусто</h1>
             <button class="profile__edit"></button>
           </div>
-          <p class="profile__subtitle">Исследователь океана, ученый</p>
+          <p class="profile__subtitle">Исследователь океана</p>
         </div>
         <button class="profile__button">+</button>
       </section>
+      <!-- Выше блок Profile -->
       <section class="elements">
+
         <div class="element">
-          <img src="./images/altai.jpg" class="element__img" alt="">
+          <img src="./images/altai.jpg" class="element__img" alt="Алтай.">
           <div class="element__title">
             <h2 class="element__header">Алтай</h2>
-            <img src="./images/fav.svg" class="element__fav" alt="">
+            <img src="./images/fav.svg" class="element__fav" alt="Иконка понравилось.">
           </div>
         </div>
 
         <div class="element">
-          <img src="./images/elb.jpg" class="element__img" alt="">
+          <img src="./images/elb.jpg" class="element__img" alt="Эльбрус.">
           <div class="element__title">
             <h2 class="element__header">Гора Эльбрус</h2>
-            <img src="./images/fav.svg" class="element__fav" alt="">
+            <img src="./images/fav.svg" class="element__fav" alt="Иконка понравилось.">
           </div>
         </div>
 
         <div class="element">
-          <img src="./images/domb.jpg" class="element__img" alt="">
+          <img src="./images/domb.jpg" class="element__img" alt="Домбай.">
           <div class="element__title">
             <h2 class="element__header">Домбай</h2>
-            <img src="./images/fav.svg" class="element__fav" alt="">
+            <img src="./images/fav.svg" class="element__fav" alt="Иконка понравилось.">
           </div>
         </div>
 
         <div class="element">
-          <img src="./images/volga.jpg" class="element__img" alt="">
+          <img src="./images/volga.jpg" class="element__img" alt="Волга.">
           <div class="element__title">
             <h2 class="element__header">Волга</h2>
-            <img src="./images/fav.svg" class="element__fav" alt="">
+            <img src="./images/fav.svg" class="element__fav" alt="Иконка понравилось.">
           </div>
         </div>
 
         <div class="element">
-          <img src="./images/karel.jpg" class="element__img" alt="">
+          <img src="./images/karel.jpg" class="element__img" alt="Причал в Карелии.">
           <div class="element__title">
             <h2 class="element__header">Карелия</h2>
-            <img src="./images/fav.svg" class="element__fav" alt="">
+            <img src="./images/fav.svg" class="element__fav" alt="Иконка понравилось.">
           </div>
         </div>
 
         <div class="element">
-          <img src="./images/mikli.jpg" class="element__img" alt="">
+          <img src="./images/mikli.jpg" class="element__img" alt="Ладожское озеро.">
           <div class="element__title">
             <h2 class="element__header">Ладога</h2>
-            <img src="./images/fav.svg" class="element__fav" alt="">
+            <img src="./images/fav.svg" class="element__fav" alt="Иконка понравилось.">
           </div>
         </div>
 
       </section>
 
-      <section class="popup">
+      <!-- Выше фото-сетка -->
+
+      <section class="popup popup_opened">
         <form class="popup__container">
-          <h2 class="popup__name">Редактировать профиль</h1>
-            <input type="text" placeholder="Жак-Ив Кусто" class="popup__text popup__title">
-            <input type="text" placeholder="Исследовать океана" class="popup__text popup__subtitle">
-            <button class="popup__button">Сохранить</button>
+          <h2 class="popup__name">Редактировать профиль</h2>
+          <input type="text" value="" placeholder="Ваше имя" class="popup__text" name="Name">
+          <input type="text" value="" placeholder="Ваше занятие" class="popup__text" name="Job">
+          <button class="popup__button">Сохранить</button>
           <div class="popup__toggle">
             <img src="./images/Close.png" class="popup__toggle-img" alt="Закрыть.">
           </div>
         </form>
       </section>
+      <!-- Выше блок с всплывающим окном -->
 
     </main>
     <footer class="footer">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
+    <!-- Здесь футер -->
   </div>
+  <script src="script.js"></script>
 </body>
 
 </html>

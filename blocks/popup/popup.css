@@ -1,8 +1,6 @@
 @import url(./__button/popup__button.css);
 @import url(./__toggle/popup__toggle.css);
 @import url(./__toggle-img/popup__toggle-img.css);
-@import url(./__subtitle/popup__subtitle.css);
-@import url(./__title/popup__title.css);
 @import url(./__container/popup__container.css);
 @import url(./__text/popup__text.css);
 @import url(./__name/popup__name.css);
@@ -16,7 +14,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   margin: 0 auto;
   align-items: center;
-  /* display: none; */
+  display: block;
 }
 
 @media all and (max-width: 1080px) {

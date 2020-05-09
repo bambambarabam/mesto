@@ -4,8 +4,8 @@
 @import url(./__fav/element__fav.css);
 
 .element {
-  height: 361px;
-  width: 282px;
+  max-height: 361px;
+  max-width: 282px;
   background-color: #fff;
   border-radius: 10px;
   margin: 0;

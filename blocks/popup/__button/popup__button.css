@@ -1,6 +1,6 @@
 .popup__button {
-  height: 50.15px;
-  width: 358px;
+  min-height: 50.15px;
+  min-width: 358px;
   background-color: #000;
   color: #fff;
   margin-top: 48px;
@@ -8,6 +8,7 @@
   border-radius: 2px;
   cursor: pointer;
   transition: background-color 1s linear 0.1s;
+  padding: 0;
 }
 
 .popup__button:hover {
@@ -16,7 +17,7 @@
 
 @media all and (max-width: 620px) {
   .popup__button {
-    max-width: 280px;
+    min-width: 280px;
     margin-top: 32px;
   }
 }

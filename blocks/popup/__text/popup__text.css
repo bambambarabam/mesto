@@ -1,6 +1,6 @@
 .popup__text {
-  width: 358px;
-  height: 27.26px;
+  min-width: 358px;
+  min-height: 27.26px;
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -14,7 +14,7 @@
 
 @media all and (max-width: 620px) {
   .popup__text {
-    max-width: 280px;
+    min-width: 280px;
     margin-top: 32px;
   }
 }

@@ -3,3 +3,9 @@
   flex-direction: row;
   align-items: center;
 }
+
+@media all and (max-width: 1080px) {
+  .profile__name {
+    margin: 14px 0 0 0;
+  }
+}
