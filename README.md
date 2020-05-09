@@ -14,4 +14,5 @@
 * [Ссылка на макет в Figma](https://www.figma.com/file/StZjf8HnoeLdiXS7dYrLAh/JavaScript.-Sprint-4)
 
 [Перейти на сайт](https://bambambarabam.github.io/mesto/)
+
 Спасибо за внимание!
