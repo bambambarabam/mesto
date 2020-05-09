@@ -18,3 +18,9 @@
   align-items: center;
   /* display: none; */
 }
+
+@media all and (max-width: 1080px) {
+  .popup {
+    min-width: 100%;
+  }
+}
