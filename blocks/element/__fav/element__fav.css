@@ -1,2 +1,8 @@
 .element__fav {
+  background-image: url('../../../images/fav.svg');
+  background-color: #fff;
+  min-width: 20.76px;
+  min-height: 18.13px;
+  border: none;
+  cursor: pointer;
 }

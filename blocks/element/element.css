@@ -4,7 +4,6 @@
 @import url(./__fav/element__fav.css);
 
 .element {
-  max-height: 361px;
   max-width: 282px;
   background-color: #fff;
   border-radius: 10px;

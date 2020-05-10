@@ -1,14 +1,19 @@
 .popup__toggle {
+  background-image: url('../../../images/close.svg');
+  background-color: rgba(255, 255, 255, 0);
+  min-width: 45.5px;
+  min-height: 47px;
   position: absolute;
-  top: -45px;
-  right: -45px;
+  top: -50px;
+  right: -37px;
   cursor: pointer;
   transition: all 1s linear .1s;
+  padding: 0;
+  border: 0;
 }
 
 .popup__toggle:hover {
   opacity: 0.6;
-  transform: rotate(45deg);
 }
 
 @media all and (max-width: 620px) {

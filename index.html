@@ -22,15 +22,15 @@
     <main class="content">
 
       <section class="profile">
-        <img src="./images/Avatar.jpg" class="profile__avatar" alt="Аватар пользователя.">
+        <img src="./images/avatar.jpg" class="profile__avatar" alt="Аватар пользователя.">
         <div class="profile__info">
           <div class="profile__name">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
-            <button class="profile__edit"></button>
+            <button class="profile__edit" type="button"></button>
           </div>
           <p class="profile__subtitle">Исследователь океана</p>
         </div>
-        <button class="profile__button">+</button>
+        <button class="profile__button" type="button">+</button>
       </section>
       <!-- Выше блок Profile -->
       <section class="elements">
@@ -39,7 +39,7 @@
           <img src="./images/altai.jpg" class="element__img" alt="Алтай.">
           <div class="element__title">
             <h2 class="element__header">Алтай</h2>
-            <img src="./images/fav.svg" class="element__fav" alt="Иконка понравилось.">
+            <button class="element__fav" type="button"></button>
           </div>
         </div>
 
@@ -47,7 +47,7 @@
           <img src="./images/elb.jpg" class="element__img" alt="Эльбрус.">
           <div class="element__title">
             <h2 class="element__header">Гора Эльбрус</h2>
-            <img src="./images/fav.svg" class="element__fav" alt="Иконка понравилось.">
+            <button class="element__fav" type="button"></button>
           </div>
         </div>
 
@@ -55,7 +55,7 @@
           <img src="./images/domb.jpg" class="element__img" alt="Домбай.">
           <div class="element__title">
             <h2 class="element__header">Домбай</h2>
-            <img src="./images/fav.svg" class="element__fav" alt="Иконка понравилось.">
+            <button class="element__fav" type="button"></button>
           </div>
         </div>
 
@@ -63,7 +63,7 @@
           <img src="./images/volga.jpg" class="element__img" alt="Волга.">
           <div class="element__title">
             <h2 class="element__header">Волга</h2>
-            <img src="./images/fav.svg" class="element__fav" alt="Иконка понравилось.">
+            <button class="element__fav" type="button"></button>
           </div>
         </div>
 
@@ -71,7 +71,7 @@
           <img src="./images/karel.jpg" class="element__img" alt="Причал в Карелии.">
           <div class="element__title">
             <h2 class="element__header">Карелия</h2>
-            <img src="./images/fav.svg" class="element__fav" alt="Иконка понравилось.">
+            <button class="element__fav" type="button"></button>
           </div>
         </div>
 
@@ -79,7 +79,7 @@
           <img src="./images/mikli.jpg" class="element__img" alt="Ладожское озеро.">
           <div class="element__title">
             <h2 class="element__header">Ладога</h2>
-            <img src="./images/fav.svg" class="element__fav" alt="Иконка понравилось.">
+            <button class="element__fav" type="button"></button>
           </div>
         </div>
 
@@ -87,15 +87,13 @@
 
       <!-- Выше фото-сетка -->
 
-      <section class="popup popup_opened">
-        <form class="popup__container">
+      <section class="popup">
+        <form class="popup__container" name="Popup" method="get" action="#">
           <h2 class="popup__name">Редактировать профиль</h2>
           <input type="text" value="" placeholder="Ваше имя" class="popup__text" name="Name">
           <input type="text" value="" placeholder="Ваше занятие" class="popup__text" name="Job">
-          <button class="popup__button">Сохранить</button>
-          <div class="popup__toggle">
-            <img src="./images/Close.png" class="popup__toggle-img" alt="Закрыть.">
-          </div>
+          <button class="popup__button" type="submit">Сохранить</button>
+          <button class="popup__toggle"></button>
         </form>
       </section>
       <!-- Выше блок с всплывающим окном -->
@@ -106,7 +104,7 @@
     </footer>
     <!-- Здесь футер -->
   </div>
-  <script src="script.js"></script>
+  <script src="./script/script.js"></script>
 </body>
 
 </html>

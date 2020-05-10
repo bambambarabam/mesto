@@ -14,7 +14,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   margin: 0 auto;
   align-items: center;
-  display: block;
+  display: none;
 }
 
 @media all and (max-width: 1080px) {
