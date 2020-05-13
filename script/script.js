@@ -16,16 +16,13 @@ function saveFields() {
   jobInput.value = formSubtitle.textContent;
 }
 
-//объявляем функцию для вызова попапа с заполненными полями
-function editProfile() {
-  popup.classList.add('popup_opened');
-  saveFields();
-}
-
-//объявляем функцию для закрытия попапа без сохранения изменений
-function closeForm() {
-  popup.classList.remove('popup_opened');
-  saveFields();
+//условие: если попап открыт, то закрываем, если закрыт, то открываем
+function clickButton() {
+  if (popup.classList.contains('popup_opened') === true) {
+    popup.classList.toggle('popup_opened');
+  } else {
+    popup.classList.toggle('popup_opened'); saveFields();
+  }
 }
 
 //объявляем функцию для сохранения изменений в попапе
@@ -34,11 +31,10 @@ function formSubmitHander(evt) {
 
   formTitle.textContent = nameInput.value;
   formSubtitle.textContent = jobInput.value;
-
-  closeForm();
+  clickButton()
 }
 
 //объявляем события по нажатию кнопок
 formElement.addEventListener('submit', formSubmitHander);
-editButton.addEventListener('click', editProfile);
-popupExit.addEventListener('click', closeForm);
+popupExit.addEventListener('click', clickButton);
+editButton.addEventListener('click', clickButton);
