@@ -1,4 +1,4 @@
-.popup__toggle {
+.popup__close {
   background-image: url('../../../images/close.svg');
   background-color: rgba(255, 255, 255, 0);
   min-width: 45.5px;
@@ -12,12 +12,12 @@
   border: 0;
 }
 
-.popup__toggle:hover {
+.popup__close:hover {
   opacity: 0.6;
 }
 
 @media all and (max-width: 620px) {
-  .popup__toggle {
+  .popup__close {
     top: -50px;
     right: auto;
   }
