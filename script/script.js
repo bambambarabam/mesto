@@ -4,10 +4,12 @@ const popup = container.querySelector('.popup');
 const popupExit = container.querySelector('.popup__close');
 const formTitle = container.querySelector('.profile__title');
 const formSubtitle = container.querySelector('.profile__subtitle');
+// const formElement = document.forms['.popup__container'];
 const formElement = container.querySelector('.popup__container');
 
 //объявляем константы для полей ввода
 const nameInput = container.querySelector('[name="Name"]');
+// const nameInput = formElement.job('[name="name"]');
 const jobInput = container.querySelector('[name="Job"]');
 
 //объявляем функцию для заполнения полей из профиля в попапе
