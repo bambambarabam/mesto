@@ -9,9 +9,9 @@ const formElement = container.querySelector('.popup__container');
 
 
 //объявляем константы для полей ввода
-const nameInput = container.querySelector('[name="Name"]');
+const nameInput = container.querySelector('[name="name"]');
 // const nameInput = formElement.job('[name="name"]');
-const jobInput = container.querySelector('[name="Job"]');
+const jobInput = container.querySelector('[name="job"]');
 
 //объявляем функцию для заполнения полей из профиля в попапе
 function saveFields() {
