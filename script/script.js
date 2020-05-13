@@ -4,14 +4,11 @@ const popup = container.querySelector('.popup');
 const popupExit = container.querySelector('.popup__close');
 const formTitle = container.querySelector('.profile__title');
 const formSubtitle = container.querySelector('.profile__subtitle');
-// const formElement = document.forms['.popup__container'];
-const formElement = container.querySelector('.popup__container');
-
+const formElement = document.forms['popup'];
 
 //объявляем константы для полей ввода
-const nameInput = container.querySelector('[name="name"]');
-// const nameInput = formElement.job('[name="name"]');
-const jobInput = container.querySelector('[name="job"]');
+const nameInput = formElement.name;
+const jobInput = formElement.job;
 
 //объявляем функцию для заполнения полей из профиля в попапе
 function saveFields() {
