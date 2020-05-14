@@ -1,8 +1,7 @@
 .elements {
   max-width: calc(100% - 398px);
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fill, 282px);
   grid-gap: 21px 18px;
   margin: 0 auto;
   padding: 50px 0 66px 0;
@@ -10,19 +9,13 @@
 
 @media all and (max-width: 1080px) {
   .elements {
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    grid-gap: 21px 18px;
     justify-content: center;
   }
 }
 
 @media all and (max-width: 620px) {
   .elements {
-    grid-template-columns: 1fr;
-    grid-template-rows: repeat(6, 1fr);
     grid-column-gap: 20px;
-    justify-content: center;
     padding: 36px 0 48px 0;
   }
 }

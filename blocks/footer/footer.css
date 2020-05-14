@@ -5,7 +5,6 @@
   padding-bottom: 60px;
 }
 
-
 @media all and (max-width: 620px) {
   .footer {
     min-width: calc(100% - 38px);
