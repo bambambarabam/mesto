@@ -3,6 +3,10 @@
 @import url(./__container/popup__container.css);
 @import url(./__text/popup__text.css);
 @import url(./__name/popup__name.css);
+@import url(./__figure/popup__figure.css);
+@import url(./__image/popup__image.css);
+@import url(./__subtitle/popup__subtitle.css);
+@import url(./__create/popup__create.css);
 
 .popup {
   min-width: 1280px;
@@ -13,7 +17,9 @@
   background-color: rgba(0, 0, 0, 0.5);
   margin: 0 auto;
   align-items: center;
-  display: none;
+  visibility: hidden;
+  transition: all .3s ease-in-out;
+  opacity: 0;
 }
 
 @media all and (max-width: 1080px) {

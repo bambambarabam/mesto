@@ -1,4 +1,4 @@
-.popup__button {
+.popup__create {
   min-height: 50.15px;
   min-width: 358px;
   background-color: #000;
@@ -12,12 +12,12 @@
   outline: none;
 }
 
-.popup__button:hover {
+.popup__create:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
 
 @media all and (max-width: 620px) {
-  .popup__button {
+  .popup__create {
     min-width: 280px;
     margin-top: 32px;
   }

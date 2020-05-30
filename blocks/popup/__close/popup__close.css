@@ -7,9 +7,10 @@
   top: -50px;
   right: -37px;
   cursor: pointer;
-  transition: all 1s linear .1s;
+  transition: opacity 1s linear .1s;
   padding: 0;
   border: 0;
+  outline: none;
 }
 
 .popup__close:hover {

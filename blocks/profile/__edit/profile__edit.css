@@ -10,6 +10,7 @@
   margin: 0 17px;
   cursor: pointer;
   transition: opacity 1s linear 0.1s;
+  outline: none;
 }
 
 .profile__edit:hover {
