@@ -1,8 +1,9 @@
 .popup__close {
   background-image: url('../../../images/close.svg');
   background-color: rgba(255, 255, 255, 0);
-  min-width: 45.5px;
-  min-height: 47px;
+  background-position: center;
+  width: 45.5px;
+  height: 47px;
   position: absolute;
   top: -50px;
   right: -37px;
@@ -19,7 +20,9 @@
 
 @media all and (max-width: 620px) {
   .popup__close {
-    top: -50px;
-    right: auto;
+    width: 30px;
+    height: 30px;
+    top: -30px;
+    right: -30px;
   }
 }
