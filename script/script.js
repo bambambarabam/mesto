@@ -35,11 +35,9 @@ const popupCreate = container.querySelector('.popup__create');
 
 const formAdd = document.forms['popup_add'];
 
-// const popupLink = container.querySelector('.popup__link');
-// const popupName = container.querySelector('.popup__name');
 const popupExitAdd = container.querySelector('.popup__close_add');
 const popupSubtitle = container.querySelector('.popup__subtitle');
-const popupExitPreview = container.querySelector('.popup__close-preview');
+const popupExitPreview = container.querySelector('.popup__close_preview');
 const formElement = document.forms['popup'];
 
 const editButton = container.querySelector('.profile__edit');
@@ -78,42 +76,50 @@ function formSubmitHander(evt) {
   clickEdit();
 }
 
-//объявляем события по нажатию кнопок
-formElement.addEventListener('submit', formSubmitHander);
-popupExit.addEventListener('click', clickEdit);
-editButton.addEventListener('click', clickEdit);
-
+//Добавляем новую карточку
 function addCard() {
   const template = itemTemplate.cloneNode(true);
-  template.querySelector('.element__img_add').src = formAdd.link;
-  template.querySelector('.element__img_add').alt = formAdd.placename;
-  template.querySelector('.element__header_add').textContent = formAdd.placename;
+  template.querySelector('.element__img_add').src = formAdd.link.value;
+  template.querySelector('.element__img_add').alt = formAdd.placename.value;
+  template.querySelector('.element__header_add').textContent = formAdd.placename.value;
 
+  //Добавление в избранное для новой карточки
   const favButton = template.querySelector('.element__fav');
   favButton.addEventListener('click', (evt) => {
     evt.target.classList.toggle('element__fav_active');
   });
 
+  //Удаление добавленной карточки
   const delButton = template.querySelector('.element__del');
   delButton.addEventListener('click', (evt) => {
     let element = evt.target.closest('.element');
     element.remove();
   });
+
+  //Вставляем новую карточку в начало контейнера
   elements.prepend(template);
 };
 
-function formAddSaver (evt) {
+//Сохранение новой карточки
+function formAddSaver(evt) {
   evt.preventDefault();
   addCard();
-  template.querySelector('.element__img_add').src = formAdd.link;
-  template.querySelector('.element__img_add').alt = formAdd.placename;
 
-  popupExitAdd.addEventListener('click', function () {
-    popupAdd.classList.toggle('popup_opened');
+  //Задаем превью для добавленной карточки
+  const elPreview = document.querySelector('.element__img_preview');
+  elPreview.addEventListener('click', (evt) => {
+    popupPreview.classList.toggle('popup_opened');
+    popupImg.src = evt.target.closest('.element__img').src;
+    popupImg.alt = evt.target.closest('.element__img').alt;
+    popupSubtitle.textContent = evt.target.closest('.element__img').alt;
   });
+
+  //Очищаем поля ввода формы добавления новой карточки
+  formAdd.link.value = "";
+  formAdd.placename.value = "";
+
   popupAddExit();
 };
-
 
 //Собираем карточку из шаблона
 function renderCard(card) {
@@ -161,12 +167,14 @@ addButton.addEventListener('click', function () {
   popupAdd.classList.toggle('popup_opened');
 });
 
-function popupAddExit () {
-  popupAdd.classList.toggle('popup_opened');
+//Закрытие попапа добавления без сохранения
+function popupAddExit() {
+  popupAdd.classList.remove('popup_opened');
 }
 
-//Закрываем попап добавления карточки
-popupExitAdd.addEventListener('click', popupAddExit);
-
+//объявляем события по нажатию кнопок
+formElement.addEventListener('submit', formSubmitHander);
+popupExit.addEventListener('click', clickEdit);
+editButton.addEventListener('click', clickEdit);
 popupCreate.addEventListener('click', formAddSaver);
-
+popupExitAdd.addEventListener('click', popupAddExit);
