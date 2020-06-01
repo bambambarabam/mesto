@@ -1,5 +1,6 @@
 .element__del {
   background: url(../../../images/trash.svg);
+  background-repeat: no-repeat;
   width: 18px;
   height: 19px;
   border: none;
