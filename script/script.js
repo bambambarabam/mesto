@@ -39,6 +39,7 @@ function profileSubmitHander(evt) {
   toggleProfilePopup();
 }
 
+//Создаем карточку из шаблона
 function addCard(name, link) {
   const cardElement = cardElementTemplate.cloneNode(true);
   const linkInput = cardElement.querySelector('.element__img_add');
@@ -47,6 +48,7 @@ function addCard(name, link) {
   linkInput.alt = name;
   titleInput.textContent = name;
 
+  //Добавляем в избранное
   const favButton = cardElement.querySelector('.element__fav');
   favButton.addEventListener('click', (evt) => {
     evt.target.classList.toggle('element__fav_active');
@@ -61,20 +63,20 @@ function addCard(name, link) {
     popupSubtitle.textContent = evt.target.closest('.element__img').alt;
   });
 
-
+  //Кнопка удаления карточки
   const delButton = cardElement.querySelector('.element__del');
   delButton.addEventListener('click', (evt) => {
     evt.target.closest('.element').remove();
   });
-  // elements.prepend(cardElement);
   return cardElement;
 }
 
+//Создаем новую карточку по данным из формы
 function addItem() {
   elements.prepend(addCard(formAdd.placename.value, formAdd.link.value));
 }
 
-//Сохранение новой карточки
+//Сохраненяем новую карточку
 function formAddSaver(evt) {
   evt.preventDefault();
   addItem();
