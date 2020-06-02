@@ -1,30 +1,3 @@
-const initialCards = [
-  {
-    name: 'Онежское озеро',
-    link: 'https://images.unsplash.com/photo-1543699936-c901ddbf0c05?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=633&q=80'
-  },
-  {
-    name: 'Тулиновка',
-    link: 'https://images.unsplash.com/photo-1516128935666-9742cf27e24c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80'
-  },
-  {
-    name: 'Выборг',
-    link: 'https://images.unsplash.com/photo-1536012354193-8bb300dc3ce6?ixlib=rb-1.2.1&auto=format&fit=crop&w=676&q=80'
-  },
-  {
-    name: 'Хийденсельга',
-    link: 'https://images.unsplash.com/photo-1559029884-e95924923629?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'
-  },
-  {
-    name: 'Самарская лука',
-    link: 'https://images.unsplash.com/photo-1579987801223-f3823e4f536b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80'
-  },
-  {
-    name: 'Ладога',
-    link: 'https://images.unsplash.com/photo-1547846218-c982107d30f2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1286&q=80'
-  }
-];
-
 const container = document.querySelector('.page');
 const popup = container.querySelector('.popup');
 const popupExit = container.querySelector('.popup__close');
@@ -53,16 +26,10 @@ const nameInput = formElement.name;
 const jobInput = formElement.job;
 
 //объявляем функцию для заполнения полей из профиля в попапе
-// function saveProfileFields() {
-//   nameInput.value = formTitle.textContent;
-//   jobInput.value = formSubtitle.textContent;
-// }
-
-
-//TODO: реализовать очистку полей формы "добавить" после нажатия кнопки закрыть
-
-
-
+function saveProfileFields() {
+  nameInput.value = formTitle.textContent;
+  jobInput.value = formSubtitle.textContent;
+}
 
 //объявляем функцию для сохранения изменений в попапе
 function profileSubmitHander(evt) {
@@ -100,6 +67,7 @@ function addCard() {
 //Сохранение новой карточки
 function formAddSaver(evt) {
   evt.preventDefault();
+
   addCard();
 
   //Задаем превью для добавленной карточки
@@ -152,7 +120,6 @@ function renderCard(card) {
 //Загружаем в карточки данные из массива
 initialCards.forEach(renderCard);
 
-
 //Вызываем попап добавления новой карточки
 addButton.addEventListener('click', function () {
   popupAdd.classList.toggle('popup_opened');
@@ -166,6 +133,8 @@ popupExitPreview.addEventListener('click', function () {
 //Закрытие попапа добавления без сохранения
 function popupAddExit() {
   popupAdd.classList.remove('popup_opened');
+  formAdd.link.value = "";
+  formAdd.placename.value = "";
 }
 
 //условие: если попап открыт, то закрываем, если закрыт, то открываем
@@ -175,9 +144,19 @@ function toggleProfilePopup() {
   } else {
     popup.classList.toggle('popup_opened');
   }
-  nameInput.value = "";
-  jobInput.value = "";
+  saveProfileFields();
 }
+
+////////
+function turnToggle(popup) {
+  popup.classList.toggle('popup_opened');
+}
+
+function closePopup(evt) {
+  if (evt.target.closest('.popup')) turnToggle(evt.target.closest('.popup'));
+  if (evt.target.closest('.popup_add')) turnToggle(evt.target.closest('.popup_add'));
+}
+/////////
 
 //объявляем события по нажатию кнопок
 formElement.addEventListener('submit', profileSubmitHander);
@@ -185,9 +164,6 @@ popupExit.addEventListener('click', toggleProfilePopup);
 editButton.addEventListener('click', toggleProfilePopup);
 popupCreate.addEventListener('click', formAddSaver);
 popupExitAdd.addEventListener('click', popupAddExit);
-
-
-
 
 
 
