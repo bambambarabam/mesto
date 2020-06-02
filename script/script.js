@@ -39,66 +39,14 @@ function profileSubmitHander(evt) {
   toggleProfilePopup();
 }
 
-//Добавляем новую карточку
-function addCard() {
+function addCard(name, link) {
   const cardElement = cardElementTemplate.cloneNode(true);
   const linkInput = cardElement.querySelector('.element__img_add');
   const titleInput = cardElement.querySelector('.element__header_add');
-  linkInput.src = formAdd.link.value;
-  linkInput.alt = formAdd.placename.value;
-  titleInput.textContent = formAdd.placename.value;
+  linkInput.src = link;
+  linkInput.alt = name;
+  titleInput.textContent = name;
 
-  //Добавление в избранное для новой карточки
-  const favButton = cardElement.querySelector('.element__fav');
-  favButton.addEventListener('click', (evt) => {
-    evt.target.classList.toggle('element__fav_active');
-  });
-
-  //Удаление добавленной карточки
-  const delButton = cardElement.querySelector('.element__del');
-  delButton.addEventListener('click', (evt) => {
-    evt.target.closest('.element').remove();
-  });
-
-  //Вставляем новую карточку в начало контейнера
-  elements.prepend(cardElement);
-}
-
-//Сохранение новой карточки
-function formAddSaver(evt) {
-  evt.preventDefault();
-
-  addCard();
-
-  //Задаем превью для добавленной карточки
-  const elPreview = document.querySelector('.element__img_preview');
-  elPreview.addEventListener('click', (evt) => {
-    popupPreview.classList.toggle('popup_opened');
-    popupImg.src = evt.target.closest('.element__img').src;
-    popupImg.alt = evt.target.closest('.element__img').alt;
-    popupSubtitle.textContent = evt.target.closest('.element__img').alt;
-  });
-
-  //Очищаем поля ввода формы добавления новой карточки
-  formAdd.link.value = "";
-  formAdd.placename.value = "";
-  popupAddExit();
-}
-
-//Собираем карточку из шаблона
-function renderCard(card) {
-  const cardElement = cardElementTemplate.cloneNode(true);
-  cardElement.querySelector('.element__img').src = card.link;
-  cardElement.querySelector('.element__img').alt = card.name;
-  cardElement.querySelector('.element__header').textContent = card.name;
-
-  //Удаляем карточку по кнопке
-  const delButton = cardElement.querySelector('.element__del');
-  delButton.addEventListener('click', (evt) => {
-  evt.target.closest('.element').remove();
-  });
-
-  //Добавляем в избранное
   const favButton = cardElement.querySelector('.element__fav');
   favButton.addEventListener('click', (evt) => {
     evt.target.classList.toggle('element__fav_active');
@@ -113,12 +61,33 @@ function renderCard(card) {
     popupSubtitle.textContent = evt.target.closest('.element__img').alt;
   });
 
-  //Добавляем в разметку
-  elements.append(cardElement);
+
+  const delButton = cardElement.querySelector('.element__del');
+  delButton.addEventListener('click', (evt) => {
+    evt.target.closest('.element').remove();
+  });
+  // elements.prepend(cardElement);
+  return cardElement;
+}
+
+function addItem() {
+  elements.prepend(addCard(formAdd.placename.value, formAdd.link.value));
+}
+
+//Сохранение новой карточки
+function formAddSaver(evt) {
+  evt.preventDefault();
+  addItem();
+  addCard();
+
+  //Очищаем поля ввода формы добавления новой карточки
+  formAdd.link.value = "";
+  formAdd.placename.value = "";
+  popupAddExit();
 }
 
 //Загружаем в карточки данные из массива
-initialCards.forEach(renderCard);
+initialCards.forEach((card) => elements.append(addCard(card.name, card.link)));
 
 //Вызываем попап добавления новой карточки
 addButton.addEventListener('click', function () {
@@ -147,23 +116,9 @@ function toggleProfilePopup() {
   saveProfileFields();
 }
 
-////////
-function turnToggle(popup) {
-  popup.classList.toggle('popup_opened');
-}
-
-function closePopup(evt) {
-  if (evt.target.closest('.popup')) turnToggle(evt.target.closest('.popup'));
-  if (evt.target.closest('.popup_add')) turnToggle(evt.target.closest('.popup_add'));
-}
-/////////
-
 //объявляем события по нажатию кнопок
 formElement.addEventListener('submit', profileSubmitHander);
 popupExit.addEventListener('click', toggleProfilePopup);
 editButton.addEventListener('click', toggleProfilePopup);
 popupCreate.addEventListener('click', formAddSaver);
 popupExitAdd.addEventListener('click', popupAddExit);
-
-
-
