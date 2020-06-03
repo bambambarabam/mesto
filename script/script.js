@@ -1,6 +1,4 @@
 const container = document.querySelector('.page');
-const popup = container.querySelector('.popup');
-const popupExit = container.querySelector('.popup__close');
 const popupPreview = container.querySelector('.popup_preview');
 const popupImg = container.querySelector('.popup__image');
 const popupAdd = container.querySelector('.popup_add');
