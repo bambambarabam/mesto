@@ -5,9 +5,11 @@ const popupAdd = container.querySelector('.popup_add');
 const popupCreate = container.querySelector('.popup__create');
 const popupEditExit = container.querySelector('.popup__close_edit');
 const popupInfoTuggle = container.querySelector('.popup_info');
-const popupExitAdd = container.querySelector('.popup__close_add');
+const popupCreateExit = container.querySelector('.popup__close_add');
 const popupSubtitle = container.querySelector('.popup__subtitle');
 const popupExitPreview = container.querySelector('.popup__close_preview');
+const popup = document.querySelector('.popup');
+
 
 //объявляем константы для полей ввода
 const formAdd = document.forms['popup_add'];
@@ -25,26 +27,58 @@ const elements = document.querySelector('.elements');
 const cardElementTemplate = document.querySelector('.template__item').content;
 
 
+
+
+
+
 function fillTheEditFields() {
   nameInput.value = formTitle.textContent;
   jobInput.value = formSubtitle.textContent;
 }
 
-function resetTitle() {
-  formTitle.textContent = nameInput.value;
-  formSubtitle.textContent = jobInput.value;
-}
 
 function resetFormFields() {
   formAdd.reset();
 }
 
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
-}
+
 
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+}
+
+function addEscapeCreateListener() {
+  document.addEventListener('keydown', escapeCreate);
+}
+
+function addEscapeProfileListener() {
+  document.addEventListener('keydown', escapeProfile);
+}
+
+function addEscapePreviewListener() {
+  document.addEventListener('keydown', escapePreview);
+}
+
+function escapePreview(evt) {
+  if (evt.keyCode === 27) {
+    closePopup(popupPreview);
+  }
+}
+
+function escapeProfile(evt) {
+  if (evt.keyCode === 27) {
+    closePopup(popup);
+  }
+}
+
+function escapeCreate(evt) {
+  if (evt.keyCode === 27) {
+    resetFormFields() || closePopup(popupAdd);
+  }
+}
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
 }
 
 //объявляем функцию для сохранения изменений в попапе
@@ -77,6 +111,7 @@ function addCard(name, link) {
     popupImg.src = evt.target.closest('.element__img').src;
     popupImg.alt = evt.target.closest('.element__img').alt;
     popupSubtitle.textContent = evt.target.closest('.element__img').alt;
+    addEscapePreviewListener();
   });
 
   //Кнопка удаления карточки
@@ -106,9 +141,9 @@ initialCards.forEach((card) => elements.append(addCard(card.name, card.link)));
 //объявляем события по нажатию кнопок
 formElement.addEventListener('submit', profileSubmitHander);
 popupCreate.addEventListener('click', formAddSaver);
-popupExitAdd.addEventListener('click', () => resetFormFields() || closePopup(popupAdd));
+popupCreateExit.addEventListener('click', () => resetFormFields() || closePopup(popupAdd));
 popupEditExit.addEventListener('click', () => fillTheEditFields() || closePopup(popupInfoTuggle));
-editButton.addEventListener('click', () => openPopup(popupInfoTuggle), fillTheEditFields());
-addButton.addEventListener('click', () => openPopup(popupAdd));
+editButton.addEventListener('click', () => openPopup(popupInfoTuggle) || fillTheEditFields() || addEscapeProfileListener());
+addButton.addEventListener('click', () => openPopup(popupAdd) || addEscapeCreateListener());
 popupExitPreview.addEventListener('click', () => closePopup(popupPreview));
 
