@@ -24,13 +24,27 @@ const addButton = container.querySelector('.profile__button');
 const elements = document.querySelector('.elements');
 const cardElementTemplate = document.querySelector('.template__item').content;
 
-//Открываем/закрываем все попапы / сбрасываем/заполняем поля
-function toggleProfilePopup(popup) {
-  popup.classList.toggle('popup_opened');
-  linkValue.value = "";
-  placenameValue.value = "";
+
+function fillTheEditFields() {
   nameInput.value = formTitle.textContent;
   jobInput.value = formSubtitle.textContent;
+}
+
+function resetTitle() {
+  formTitle.textContent = nameInput.value;
+  formSubtitle.textContent = jobInput.value;
+}
+
+function resetFormFields() {
+  formAdd.reset();
+}
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+}
+
+function openPopup(popup) {
+  popup.classList.add('popup_opened');
 }
 
 //объявляем функцию для сохранения изменений в попапе
@@ -38,7 +52,7 @@ function profileSubmitHander(evt) {
   evt.preventDefault();
   formTitle.textContent = nameInput.value;
   formSubtitle.textContent = jobInput.value;
-  toggleProfilePopup(popupInfoTuggle);
+  closePopup(popupInfoTuggle);
 }
 
 //Создаем карточку из шаблона
@@ -83,7 +97,7 @@ function formAddSaver(evt) {
   evt.preventDefault();
   addItem();
   addCard();
-  toggleProfilePopup(popupAdd);
+  closePopup(popupAdd);
 }
 
 //Загружаем в карточки данные из массива
@@ -92,8 +106,9 @@ initialCards.forEach((card) => elements.append(addCard(card.name, card.link)));
 //объявляем события по нажатию кнопок
 formElement.addEventListener('submit', profileSubmitHander);
 popupCreate.addEventListener('click', formAddSaver);
-popupEditExit.addEventListener('click', () => toggleProfilePopup(popupInfoTuggle));
-editButton.addEventListener('click', () => toggleProfilePopup(popupInfoTuggle));
-popupExitAdd.addEventListener('click', () => toggleProfilePopup(popupAdd));
-addButton.addEventListener('click', () => toggleProfilePopup(popupAdd));
-popupExitPreview.addEventListener('click', () => toggleProfilePopup(popupPreview));
+popupExitAdd.addEventListener('click', () => resetFormFields() || closePopup(popupAdd));
+popupEditExit.addEventListener('click', () => fillTheEditFields() || closePopup(popupInfoTuggle));
+editButton.addEventListener('click', () => openPopup(popupInfoTuggle), fillTheEditFields());
+addButton.addEventListener('click', () => openPopup(popupAdd));
+popupExitPreview.addEventListener('click', () => closePopup(popupPreview));
+

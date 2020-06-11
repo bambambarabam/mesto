@@ -39,10 +39,10 @@
       <!-- Выше фото-сетка -->
 
       <section class="popup popup_info">
-        <form class="popup__container" name="popup" method="get" action="#">
+        <form class="popup__container" name="popup" method="get" action="#" novalidate>
           <h2 class="popup__name">Редактировать профиль</h2>
-          <input type="text" value="" placeholder="Ваше имя" class="popup__text" name="name">
-          <input type="text" value="" placeholder="Ваше занятие" class="popup__text" name="job">
+          <input type="text" value="" placeholder="Ваше имя" class="popup__text" name="name" minlength="2" maxlength="40" required>
+          <input type="text" value="" placeholder="Ваше занятие" class="popup__text" name="job" required minlength="2" maxlength="200" required>
           <button class="popup__button" type="submit">Сохранить</button>
           <button aria-label="Закрыть" class="popup__close popup__close_edit" type="button"></button>
         </form>
@@ -50,10 +50,10 @@
       <!-- Выше блок с всплывающим окном для редактирования профиля-->
 
       <section class="popup popup_add">
-        <form class="popup__container" name="popup_add" method="get" action="#">
+        <form class="popup__container" name="popup_add" method="get" action="#" novalidate>
           <h2 class="popup__name">Новое место</h2>
-          <input type="text" value="" placeholder="Название" class="popup__text" name="placename">
-          <input type="text" value="" placeholder="Ссылка на картинку" class="popup__text" name="link">
+          <input type="text" value="" placeholder="Название" class="popup__text" name="placename" minlength="1" maxlength="30" required>
+          <input type="url" value="" placeholder="Ссылка на картинку" class="popup__text" name="link" required>
           <button class="popup__create" type="submit">Создать</button>
           <button aria-label="Закрыть" class="popup__close popup__close_add" type="button"></button>
         </form>
@@ -88,7 +88,7 @@
     </div>
   </template>
 
-  <script src="./scripts/validate.js"></script>
+  <!-- <script src="./scripts/validate.js"></script> -->
   <script src="./scripts/initialcards.js"></script>
   <script src="./scripts/script.js"></script>
 </body>
