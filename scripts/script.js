@@ -31,7 +31,7 @@ function fillTheProfileFields() {
   jobInput.value = profileSubitle.textContent;
 }
 
-//Сбрасываем поля позакрытию формы
+//Сбрасываем поля по закрытию формы
 function resetFormFields() {
   formAdd.reset();
 }
@@ -39,6 +39,7 @@ function resetFormFields() {
 //Открываем попап
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  addClickOverlayListener();
 }
 
 //Закрываем попап
@@ -80,6 +81,19 @@ function escapeCreate(evt) {
   if (evt.keyCode === 27) {
     resetFormFields() || closePopup(popupCreateTuggle);
   }
+}
+
+//Закрываем попап по клику на оверлей
+function clickOverlayToClose(evt) {
+  if (evt.target.matches('.popup')) {
+    resetFormFields();
+    closePopup(evt.target.closest('.popup'));
+  }
+}
+
+//Слушатель для клика по оверлею
+function addClickOverlayListener() {
+  document.addEventListener('click', clickOverlayToClose);
 }
 
 //объявляем функцию для сохранения изменений в попапе
@@ -147,4 +161,3 @@ popupEditExitBtn.addEventListener('click', () => fillTheProfileFields() || close
 profileBtn.addEventListener('click', () => openPopup(popupProfileTuggle) || fillTheProfileFields() || addEscapeProfileListener());
 createBtn.addEventListener('click', () => openPopup(popupCreateTuggle) || addEscapeCreateListener());
 popupPreviewExitBtn.addEventListener('click', () => closePopup(popupPreviewTuggle));
-
