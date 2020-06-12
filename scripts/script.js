@@ -79,7 +79,9 @@ function escapeProfile(evt) {
 //Закрываем попап добавления по Esc
 function escapeCreate(evt) {
   if (evt.keyCode === 27) {
-    resetFormFields() || closePopup(popupCreateTuggle);
+    evt.preventDefault();
+    resetFormFields();
+    closePopup(popupCreateTuggle);
   }
 }
 
@@ -127,6 +129,7 @@ function addCard(name, link) {
     popupImg.alt = evt.target.closest('.element__img').alt;
     popupSubtitle.textContent = evt.target.closest('.element__img').alt;
     addEscapePreviewListener();
+    addClickOverlayListener();
   });
 
   //Кнопка удаления карточки
