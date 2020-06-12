@@ -1,15 +1,14 @@
 const container = document.querySelector('.page');
-const popupPreview = container.querySelector('.popup_preview');
-const popupImg = container.querySelector('.popup__image');
-const popupAdd = container.querySelector('.popup_add');
-const popupCreate = container.querySelector('.popup__create');
-const popupEditExit = container.querySelector('.popup__close_edit');
-const popupInfoTuggle = container.querySelector('.popup_info');
-const popupCreateExit = container.querySelector('.popup__close_add');
+const popupPreviewTuggle = container.querySelector('.popup_preview');
+const popupCreateTuggle = container.querySelector('.popup_add');
+const popupProfileTuggle = container.querySelector('.popup_info');
+const popupCreateBtn = container.querySelector('.popup__create');
+const popupEditExitBtn = container.querySelector('.popup__close_edit');
+const popupCreateExitBtn = container.querySelector('.popup__close_add');
+const popupPreviewExitBtn = container.querySelector('.popup__close_preview');
 const popupSubtitle = container.querySelector('.popup__subtitle');
-const popupExitPreview = container.querySelector('.popup__close_preview');
+const popupImg = container.querySelector('.popup__image');
 const popup = document.querySelector('.popup');
-
 
 //объявляем константы для полей ввода
 const formAdd = document.forms['popup_add'];
@@ -19,74 +18,76 @@ const jobInput = formElement.job;
 const linkValue = formAdd.link;
 const placenameValue = formAdd.placename;
 
-const editButton = container.querySelector('.profile__edit');
-const formTitle = container.querySelector('.profile__title');
-const formSubtitle = container.querySelector('.profile__subtitle');
-const addButton = container.querySelector('.profile__button');
+const profileBtn = container.querySelector('.profile__edit');
+const profileTitle = container.querySelector('.profile__title');
+const profileSubitle = container.querySelector('.profile__subtitle');
+const createBtn = container.querySelector('.profile__button');
 const elements = document.querySelector('.elements');
 const cardElementTemplate = document.querySelector('.template__item').content;
 
-
-
-
-
-
-function fillTheEditFields() {
-  nameInput.value = formTitle.textContent;
-  jobInput.value = formSubtitle.textContent;
+//Заполняем поля профиля из попапа
+function fillTheProfileFields() {
+  nameInput.value = profileTitle.textContent;
+  jobInput.value = profileSubitle.textContent;
 }
 
-
+//Сбрасываем поля позакрытию формы
 function resetFormFields() {
   formAdd.reset();
 }
 
-
-
+//Открываем попап
 function openPopup(popup) {
   popup.classList.add('popup_opened');
 }
 
+//Закрываем попап
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+}
+
+//Слушатель для Esc на попап добавления карточки
 function addEscapeCreateListener() {
   document.addEventListener('keydown', escapeCreate);
 }
 
+//Слушатель для Esc на попап редактирования профиля
 function addEscapeProfileListener() {
   document.addEventListener('keydown', escapeProfile);
 }
 
+//Слушатель для Esc на попап превью
 function addEscapePreviewListener() {
   document.addEventListener('keydown', escapePreview);
 }
 
+//Закрываем превью по Esc
 function escapePreview(evt) {
   if (evt.keyCode === 27) {
-    closePopup(popupPreview);
+    closePopup(popupPreviewTuggle);
   }
 }
 
+//Закрываем попап профиля по Esc
 function escapeProfile(evt) {
   if (evt.keyCode === 27) {
     closePopup(popup);
   }
 }
 
+//Закрываем попап добавления по Esc
 function escapeCreate(evt) {
   if (evt.keyCode === 27) {
-    resetFormFields() || closePopup(popupAdd);
+    resetFormFields() || closePopup(popupCreateTuggle);
   }
-}
-
-function closePopup(popup) {
-  popup.classList.remove('popup_opened');
 }
 
 //объявляем функцию для сохранения изменений в попапе
 function profileSubmitHander(evt) {
   evt.preventDefault();
-  formTitle.textContent = nameInput.value;
-  formSubtitle.textContent = jobInput.value;
-  closePopup(popupInfoTuggle);
+  profileTitle.textContent = nameInput.value;
+  profileSubitle.textContent = jobInput.value;
+  closePopup(popupProfileTuggle);
 }
 
 //Создаем карточку из шаблона
@@ -107,7 +108,7 @@ function addCard(name, link) {
   //Открываем превью
   const elPreview = cardElement.querySelector('.element__img_preview');
   elPreview.addEventListener('click', (evt) => {
-    popupPreview.classList.toggle('popup_opened');
+    popupPreviewTuggle.classList.toggle('popup_opened');
     popupImg.src = evt.target.closest('.element__img').src;
     popupImg.alt = evt.target.closest('.element__img').alt;
     popupSubtitle.textContent = evt.target.closest('.element__img').alt;
@@ -132,7 +133,7 @@ function formAddSaver(evt) {
   evt.preventDefault();
   addItem();
   addCard();
-  closePopup(popupAdd);
+  closePopup(popupCreateTuggle);
 }
 
 //Загружаем в карточки данные из массива
@@ -140,10 +141,10 @@ initialCards.forEach((card) => elements.append(addCard(card.name, card.link)));
 
 //объявляем события по нажатию кнопок
 formElement.addEventListener('submit', profileSubmitHander);
-popupCreate.addEventListener('click', formAddSaver);
-popupCreateExit.addEventListener('click', () => resetFormFields() || closePopup(popupAdd));
-popupEditExit.addEventListener('click', () => fillTheEditFields() || closePopup(popupInfoTuggle));
-editButton.addEventListener('click', () => openPopup(popupInfoTuggle) || fillTheEditFields() || addEscapeProfileListener());
-addButton.addEventListener('click', () => openPopup(popupAdd) || addEscapeCreateListener());
-popupExitPreview.addEventListener('click', () => closePopup(popupPreview));
+popupCreateBtn.addEventListener('click', formAddSaver);
+popupCreateExitBtn.addEventListener('click', () => resetFormFields() || closePopup(popupCreateTuggle));
+popupEditExitBtn.addEventListener('click', () => fillTheProfileFields() || closePopup(popupProfileTuggle));
+profileBtn.addEventListener('click', () => openPopup(popupProfileTuggle) || fillTheProfileFields() || addEscapeProfileListener());
+createBtn.addEventListener('click', () => openPopup(popupCreateTuggle) || addEscapeCreateListener());
+popupPreviewExitBtn.addEventListener('click', () => closePopup(popupPreviewTuggle));
 
