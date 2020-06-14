@@ -160,8 +160,8 @@ initialCards.forEach((card) => elements.append(createCard(card.name, card.link))
 //объявляем события по нажатию кнопок
 formInput.addEventListener('submit', profileSubmitHander);
 popupCreateBtn.addEventListener('click', createCardSaver);
-popupCreateExitBtn.addEventListener('click', () => resetFormFields() || closePopup(popupCreateTuggle));
-popupEditExitBtn.addEventListener('click', () => fillTheProfileFields() || closePopup(popupProfileTuggle));
-profileBtn.addEventListener('click', () => openPopup(popupProfileTuggle) || fillTheProfileFields() || addEscapeProfileListener());
-createBtn.addEventListener('click', () => openPopup(popupCreateTuggle) || addEscapeCreateListener());
-popupPreviewExitBtn.addEventListener('click', () => closePopup(popupPreviewTuggle));
+popupCreateExitBtn.addEventListener('click', () => {resetFormFields(), closePopup(popupCreateTuggle)});
+popupEditExitBtn.addEventListener('click', () => {fillTheProfileFields(), closePopup(popupProfileTuggle)});
+profileBtn.addEventListener('click', () => {openPopup(popupProfileTuggle), fillTheProfileFields(), addEscapeProfileListener()});
+createBtn.addEventListener('click', () => {openPopup(popupCreateTuggle), addEscapeCreateListener()});
+popupPreviewExitBtn.addEventListener('click', () => {closePopup(popupPreviewTuggle)});

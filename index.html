@@ -42,12 +42,13 @@
         <form class="popup__form" name="popup" method="get" action="#" novalidate>
           <h2 class="popup__name">Редактировать профиль</h2>
 
-          <input type="text" value="" placeholder="Ваше имя" class="popup__input"
-           name="name" minlength="2" maxlength="40" required>
-           <span class="popup__error" id="name-error"></span>
-          <input type="text" value="" placeholder="Ваше занятие" class="popup__input"
-           name="job" required minlength="2" maxlength="200" required>
-           <span class="popup__error" id="job-error"></span>
+          <input type="text" value="" placeholder="Ваше имя" class="popup__input" name="name" minlength="2"
+            maxlength="40" required>
+          <span class="popup__error" id="name-error"></span>
+
+          <input type="text" value="" placeholder="Ваше занятие" class="popup__input" name="job" required minlength="2"
+            maxlength="200" required>
+          <span class="popup__error" id="job-error"></span>
 
           <button class="popup__button popup__save" type="submit">Сохранить</button>
           <button aria-label="Закрыть" class="popup__close popup__close_edit" type="button"></button>
@@ -59,14 +60,14 @@
         <form class="popup__form" name="popup_add" method="get" action="#" novalidate>
           <h2 class="popup__name">Новое место</h2>
 
-          <input type="text" value="" placeholder="Название" class="popup__input" name="placename"
-           minlength="1" maxlength="30" required>
-           <span class="popup__error" id="placename-error"></span>
-          <input type="url" value="" placeholder="Ссылка на картинку" class="popup__input" name="link"
-           required>
-           <span class="popup__error" id="link-error"></span>
+          <input type="text" value="" placeholder="Название" class="popup__input" name="placename" minlength="1"
+            maxlength="30" required>
+          <span class="popup__error" id="placename-error"></span>
 
-          <button class="popup__button popup__create popup__button_disabled" type="submit" disabled >Создать</button>
+          <input type="url" value="" placeholder="Ссылка на картинку" class="popup__input" name="link" required>
+          <span class="popup__error" id="link-error"></span>
+
+          <button class="popup__button popup__create popup__button_disabled" type="submit" disabled>Создать</button>
           <button aria-label="Закрыть" class="popup__close popup__close_add" type="button"></button>
         </form>
       </section>
@@ -100,8 +101,8 @@
     </div>
   </template>
 
-  <script src="./scripts/validate.js"></script>
   <script src="./scripts/initialcards.js"></script>
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/script.js"></script>
 </body>
 
