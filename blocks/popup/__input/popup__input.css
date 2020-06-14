@@ -1,4 +1,4 @@
-.popup__text {
+.popup__input {
   min-width: 358px;
   min-height: 27.26px;
   font-style: normal;
@@ -14,7 +14,7 @@
 }
 
 @media all and (max-width: 620px) {
-  .popup__text {
+  .popup__input {
     min-width: 280px;
     margin-top: 32px;
   }

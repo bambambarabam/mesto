@@ -1,4 +1,4 @@
-.popup__container {
+.popup__form {
   max-width: 430px;
   background-color: #fff;
   border-radius: 10px;
@@ -10,7 +10,7 @@
 }
 
 @media all and (max-width: 620px) {
-  .popup__container {
+  .popup__form {
     max-width: 300px;
   }
 }

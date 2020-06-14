@@ -12,9 +12,9 @@ const popup = document.querySelector('.popup');
 
 //объявляем константы для полей ввода
 const formAdd = document.forms['popup_add'];
-const formElement = document.forms['popup'];
-const nameInput = formElement.name;
-const jobInput = formElement.job;
+const formInput = document.forms['popup'];
+const nameInput = formInput.name;
+const jobInput = formInput.job;
 const linkValue = formAdd.link;
 const placenameValue = formAdd.placename;
 
@@ -107,7 +107,7 @@ function profileSubmitHander(evt) {
 }
 
 //Создаем карточку из шаблона
-function addCard(name, link) {
+function createCard(name, link) {
   const cardElement = cardElementTemplate.cloneNode(true);
   const linkInput = cardElement.querySelector('.element__img_add');
   const titleInput = cardElement.querySelector('.element__header_add');
@@ -141,24 +141,25 @@ function addCard(name, link) {
 }
 
 //Создаем новую карточку по данным из формы
-function addItem() {
-  elements.prepend(addCard(placenameValue.value, linkValue.value));
+function addCardOnPage() {
+  elements.prepend(createCard(placenameValue.value, linkValue.value));
 }
 
 //Сохраненяем новую карточку
-function formAddSaver(evt) {
+function createCardSaver(evt) {
   evt.preventDefault();
-  addItem();
-  addCard();
+  createCard();
+  addCardOnPage();
+  resetFormFields();
   closePopup(popupCreateTuggle);
 }
 
 //Загружаем в карточки данные из массива
-initialCards.forEach((card) => elements.append(addCard(card.name, card.link)));
+initialCards.forEach((card) => elements.append(createCard(card.name, card.link)));
 
 //объявляем события по нажатию кнопок
-formElement.addEventListener('submit', profileSubmitHander);
-popupCreateBtn.addEventListener('click', formAddSaver);
+formInput.addEventListener('submit', profileSubmitHander);
+popupCreateBtn.addEventListener('click', createCardSaver);
 popupCreateExitBtn.addEventListener('click', () => resetFormFields() || closePopup(popupCreateTuggle));
 popupEditExitBtn.addEventListener('click', () => fillTheProfileFields() || closePopup(popupProfileTuggle));
 profileBtn.addEventListener('click', () => openPopup(popupProfileTuggle) || fillTheProfileFields() || addEscapeProfileListener());
