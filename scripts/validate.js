@@ -8,7 +8,7 @@ const validObject = {
 }
 
 //Присваеваем инпутам значения ошибок
-function HandleInput(evt, options) {
+function handleInput(evt, options) {
   const input = evt.target;
   const error = document.querySelector(`#${input.name}-error`)
   if (input.checkValidity()) {
@@ -34,7 +34,7 @@ function enableValidation(options) {
     );
     inputElements.forEach((input) => {
       input.addEventListener('input', (evt) =>
-        HandleInput(evt, options)
+        handleInput(evt, options)
       );
     })
 

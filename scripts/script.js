@@ -12,9 +12,9 @@ const popup = document.querySelector('.popup');
 
 //объявляем константы для полей ввода
 const formAdd = document.forms['popup_add'];
-const formInput = document.forms['popup'];
-const nameInput = formInput.name;
-const jobInput = formInput.job;
+const profileInput = document.forms['popup'];
+const nameInput = profileInput.name;
+const jobInput = profileInput.job;
 const linkValue = formAdd.link;
 const placenameValue = formAdd.placename;
 
@@ -95,7 +95,7 @@ function clickOverlayToClose(evt) {
 
 //Слушатель для клика по оверлею
 function addClickOverlayListener() {
-  document.addEventListener('click', clickOverlayToClose);
+  document.addEventListener('mousedown', clickOverlayToClose);
 }
 
 //объявляем функцию для сохранения изменений в попапе
@@ -148,7 +148,6 @@ function addCardOnPage() {
 //Сохраненяем новую карточку
 function createCardSaver(evt) {
   evt.preventDefault();
-  createCard();
   addCardOnPage();
   resetFormFields();
   closePopup(popupCreateTuggle);
@@ -158,7 +157,7 @@ function createCardSaver(evt) {
 initialCards.forEach((card) => elements.append(createCard(card.name, card.link)));
 
 //объявляем события по нажатию кнопок
-formInput.addEventListener('submit', profileSubmitHander);
+profileInput.addEventListener('submit', profileSubmitHander);
 popupCreateBtn.addEventListener('click', createCardSaver);
 popupCreateExitBtn.addEventListener('click', () => {resetFormFields(), closePopup(popupCreateTuggle)});
 popupEditExitBtn.addEventListener('click', () => {fillTheProfileFields(), closePopup(popupProfileTuggle)});
