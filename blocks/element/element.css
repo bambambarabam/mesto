@@ -7,9 +7,15 @@
 
 .element {
   max-width: 282px;
+  min-height: 361px;
   background-color: #fff;
   border-radius: 10px;
   margin: 0;
   position: relative;
   cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
