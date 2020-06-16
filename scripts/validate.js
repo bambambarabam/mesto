@@ -43,12 +43,14 @@ function enableValidation(options) {
       evt.preventDefault();
     })
 
-    formElement.addEventListener('input', () => {
-      const isFormValid = formElement.checkValidity();
-      submitButton.disabled = !isFormValid;
-      submitButton.classList.toggle(options.inactiveButtonClass, !isFormValid);
-    })
+    formElement.addEventListener('input', () => handleFormInput(formElement, submitButton, validObject.inactiveButtonClass))
   })
+}
+
+function handleFormInput(formElement, submitButton, inactiveButtonClass) {
+  const isFormValid = formElement.checkValidity();
+  submitButton.disabled = !isFormValid;
+  submitButton.classList.toggle(validObject.inactiveButtonClass, !isFormValid);
 }
 
 enableValidation(validObject);
