@@ -43,11 +43,11 @@
           <h2 class="popup__name">Редактировать профиль</h2>
 
           <input type="text" value="" placeholder="Ваше имя" class="popup__input" name="name" minlength="2"
-            maxlength="40" required>
+            maxlength="40" id="name" required>
           <span class="popup__error" id="name-error"></span>
 
           <input type="text" value="" placeholder="Ваше занятие" class="popup__input" name="job" required minlength="2"
-            maxlength="200" required>
+            maxlength="200" id="job" required>
           <span class="popup__error" id="job-error"></span>
 
           <button class="popup__button popup__save" type="submit">Сохранить</button>
@@ -61,10 +61,10 @@
           <h2 class="popup__name">Новое место</h2>
 
           <input type="text" value="" placeholder="Название" class="popup__input" name="placename" minlength="1"
-            maxlength="30" required>
+            maxlength="30" id="placename" required>
           <span class="popup__error" id="placename-error"></span>
 
-          <input type="url" value="" placeholder="Ссылка на картинку" class="popup__input" name="link" required>
+          <input type="url" value="" placeholder="Ссылка на картинку" class="popup__input" name="link" id="placename" required>
           <span class="popup__error" id="link-error"></span>
 
           <button class="popup__button popup__create popup__button_disabled" type="submit" disabled>Создать</button>
