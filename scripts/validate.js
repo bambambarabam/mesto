@@ -7,30 +7,34 @@ const validObject = {
   errorClass: 'popup__error_visible'
 }
 
+//Отображение ошибок
 function enableError(input, errorElement, inputErrorClass, errorClass) {
   input.classList.add(inputErrorClass);
   errorElement.textContent = input.validationMessage;
   errorElement.classList.add(errorClass);
 }
 
+//Скрытие ошибок
 function disableError(input, errorElement, inputErrorClass, errorClass) {
   input.classList.remove(inputErrorClass);
   errorElement.textContent = '';
   errorElement.classList.remove(errorClass);
 }
 
+//Проверка полей ввода
 function handleInput(input, inputErrorClass, errorClass) {
   const errorElement = document.querySelector(`#${input.name}-error`);
   !input.checkValidity() ? enableError(input, errorElement, inputErrorClass, errorClass) : disableError(input, errorElement, inputErrorClass, errorClass);
 }
 
+//Переключение состояние кнопки
 function handleFormInput(formElement, submitButton, inactiveButtonClass) {
   const isFormValid = formElement.checkValidity();
-
   submitButton.disabled = !isFormValid;
   submitButton.classList.toggle(inactiveButtonClass, !isFormValid);
 }
 
+//Валидация
 function enableValidation(options) {
   const formElements = Array.from(document.querySelectorAll(options.formSelector));
   formElements.forEach(formElement => {
