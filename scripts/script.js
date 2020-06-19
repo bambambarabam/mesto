@@ -31,6 +31,18 @@ function fillTheProfileFields() {
   jobInput.value = profileSubitle.textContent;
 }
 
+//Сбрасываем поля с ошибками при закрытии окна
+function resetFormFields(popup) {
+  const inputs = popup.querySelectorAll('.popup__input');
+  inputs.forEach(input => {
+    input.value = '';
+    input.classList.remove('popup__input_type_error');
+    const error = popup.querySelector(`#${input.name}-error`);
+    error.textContent = "";
+    error.classList.remove('popup__error_visible');
+  })
+}
+
 //Открываем попап и назначаем слушатели на закрытие по оверлею и Esc
 function openPopup(popup) {
   formAdd.reset();
@@ -49,7 +61,8 @@ function closePopup(popup) {
 //Закрываем попап по клику на оверлей
 function clickOverlayToClose(evt) {
   if (evt.target.matches('.popup')) {
-    closePopup(evt.target.closest('.popup'));
+    closePopup(evt.target.closest('.popup')),
+      resetFormFields(evt.target.closest('.popup'));
   }
 }
 
@@ -58,7 +71,8 @@ function clickEscToClose(evt) {
   if (evt.keyCode === 27) {
     const opened = document.querySelector('.popup_opened');
     if (opened) {
-      closePopup(opened);
+      resetFormFields(opened),
+        closePopup(opened);
     };
   }
 }
@@ -123,8 +137,8 @@ initialCards.forEach((card) => elements.append(createCard(card.name, card.link))
 //объявляем события по нажатию кнопок
 profileInput.addEventListener('submit', profileSubmitHander);
 formAdd.addEventListener('submit', createCardSaver);
-popupCreateExitBtn.addEventListener('click', () => { closePopup(popupCreateTuggle) });
-popupEditExitBtn.addEventListener('click', () => { fillTheProfileFields(), closePopup(popupProfileTuggle) });
+popupCreateExitBtn.addEventListener('click', () => { closePopup(popupCreateTuggle), resetFormFields(popupCreateTuggle) });
+popupEditExitBtn.addEventListener('click', () => { resetFormFields(popupProfileTuggle), closePopup(popupProfileTuggle) });
 profileBtn.addEventListener('click', () => { openPopup(popupProfileTuggle), fillTheProfileFields() });
 createBtn.addEventListener('click', () => { openPopup(popupCreateTuggle) });
 popupPreviewExitBtn.addEventListener('click', () => { closePopup(popupPreviewTuggle) });
