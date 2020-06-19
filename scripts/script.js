@@ -31,71 +31,36 @@ function fillTheProfileFields() {
   jobInput.value = profileSubitle.textContent;
 }
 
-//Сбрасываем поля по закрытию формы
-function resetFormFields() {
-  formAdd.reset();
-}
-
-//Открываем попап
+//Открываем попап и назначаем слушатели на закрытие по оверлею и Esc
 function openPopup(popup) {
+  formAdd.reset();
   popup.classList.add('popup_opened');
-  addClickOverlayListener();
+  document.addEventListener('keydown', clickEscToClose);
+  document.addEventListener('mousedown', clickOverlayToClose);
 }
 
-//Закрываем попап
+//Закрываем попап и снимаем слушатели на закрытие по оверлею и Esc
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
-}
-
-//Слушатель для Esc на попап добавления карточки
-function addEscapeCreateListener() {
-  document.addEventListener('keydown', escapeCreate);
-}
-
-//Слушатель для Esc на попап редактирования профиля
-function addEscapeProfileListener() {
-  document.addEventListener('keydown', escapeProfile);
-}
-
-//Слушатель для Esc на попап превью
-function addEscapePreviewListener() {
-  document.addEventListener('keydown', escapePreview);
-}
-
-//Закрываем превью по Esc
-function escapePreview(evt) {
-  if (evt.keyCode === 27) {
-    closePopup(popupPreviewTuggle);
-  }
-}
-
-//Закрываем попап профиля по Esc
-function escapeProfile(evt) {
-  if (evt.keyCode === 27) {
-    closePopup(popup);
-  }
-}
-
-//Закрываем попап добавления по Esc
-function escapeCreate(evt) {
-  if (evt.keyCode === 27) {
-    evt.preventDefault();
-    resetFormFields();
-    closePopup(popupCreateTuggle);
-  }
+  document.removeEventListener('keydown', clickEscToClose);
+  document.removeEventListener('mousedown', clickOverlayToClose);
 }
 
 //Закрываем попап по клику на оверлей
 function clickOverlayToClose(evt) {
   if (evt.target.matches('.popup')) {
-    resetFormFields();
     closePopup(evt.target.closest('.popup'));
   }
 }
 
-//Слушатель для клика по оверлею
-function addClickOverlayListener() {
-  document.addEventListener('mousedown', clickOverlayToClose);
+//Закрываем попап по клику на Esc
+function clickEscToClose(evt) {
+  if (evt.keyCode === 27) {
+    const opened = document.querySelector('.popup_opened');
+    if (opened) {
+      closePopup(opened);
+    };
+  }
 }
 
 //объявляем функцию для сохранения изменений в попапе
@@ -128,8 +93,8 @@ function createCard(name, link) {
     popupImg.src = evt.target.closest('.element__img').src;
     popupImg.alt = evt.target.closest('.element__img').alt;
     popupSubtitle.textContent = evt.target.closest('.element__img').alt;
-    addEscapePreviewListener();
-    addClickOverlayListener();
+    document.addEventListener('keydown', clickEscToClose),
+      document.addEventListener('mousedown', clickOverlayToClose);
   });
 
   //Кнопка удаления карточки
@@ -149,7 +114,6 @@ function addCardOnPage() {
 function createCardSaver(evt) {
   evt.preventDefault();
   addCardOnPage();
-  resetFormFields();
   closePopup(popupCreateTuggle);
 }
 
@@ -158,9 +122,9 @@ initialCards.forEach((card) => elements.append(createCard(card.name, card.link))
 
 //объявляем события по нажатию кнопок
 profileInput.addEventListener('submit', profileSubmitHander);
-popupCreateBtn.addEventListener('click', createCardSaver);
-popupCreateExitBtn.addEventListener('click', () => {resetFormFields(), closePopup(popupCreateTuggle)});
-popupEditExitBtn.addEventListener('click', () => {fillTheProfileFields(), closePopup(popupProfileTuggle)});
-profileBtn.addEventListener('click', () => {openPopup(popupProfileTuggle), fillTheProfileFields(), addEscapeProfileListener()});
-createBtn.addEventListener('click', () => {openPopup(popupCreateTuggle), addEscapeCreateListener()});
-popupPreviewExitBtn.addEventListener('click', () => {closePopup(popupPreviewTuggle)});
+formAdd.addEventListener('submit', createCardSaver);
+popupCreateExitBtn.addEventListener('click', () => { closePopup(popupCreateTuggle) });
+popupEditExitBtn.addEventListener('click', () => { fillTheProfileFields(), closePopup(popupProfileTuggle) });
+profileBtn.addEventListener('click', () => { openPopup(popupProfileTuggle), fillTheProfileFields() });
+createBtn.addEventListener('click', () => { openPopup(popupCreateTuggle) });
+popupPreviewExitBtn.addEventListener('click', () => { closePopup(popupPreviewTuggle) });
