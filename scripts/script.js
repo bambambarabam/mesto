@@ -40,6 +40,9 @@ function resetFormFields(popup) {
     const error = popup.querySelector(`#${input.name}-error`);
     error.textContent = "";
     error.classList.remove('popup__error_visible');
+    const button = popup.querySelector('.popup__button');
+    button.classList.add('popup__button_disabled');
+    button.disabled = true;
   })
 }
 
