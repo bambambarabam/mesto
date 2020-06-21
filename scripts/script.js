@@ -12,9 +12,9 @@ const popup = document.querySelector('.popup');
 
 //объявляем константы для полей ввода
 const formAdd = document.forms['popup_add'];
-const profileInput = document.forms['popup'];
-const nameInput = profileInput.name;
-const jobInput = profileInput.job;
+const formProfile = document.forms['form_profile_name'];
+const nameInput = formProfile.name;
+const jobInput = formProfile.job;
 const linkValue = formAdd.link;
 const placenameValue = formAdd.placename;
 
@@ -38,7 +38,7 @@ function resetFormFields(popup) {
     input.value = '';
     input.classList.remove('popup__input_type_error');
     const error = popup.querySelector(`#${input.name}-error`);
-    error.textContent = "";
+    error.textContent = '';
     error.classList.remove('popup__error_visible');
     const button = popup.querySelector('.popup__button');
     button.classList.add('popup__button_disabled');
@@ -64,8 +64,11 @@ function closePopup(popup) {
 //Закрываем попап по клику на оверлей
 function clickOverlayToClose(evt) {
   if (evt.target.matches('.popup')) {
-    closePopup(evt.target.closest('.popup')),
-      resetFormFields(evt.target.closest('.popup'));
+    const opened_popup = document.querySelector('.popup_opened');
+    if (opened_popup) {
+      closePopup(opened_popup),
+        resetFormFields(opened_popup);
+    }
   }
 }
 
@@ -76,7 +79,7 @@ function clickEscToClose(evt) {
     if (opened) {
       resetFormFields(opened),
         closePopup(opened);
-    };
+    }
   }
 }
 
@@ -106,12 +109,10 @@ function createCard(name, link) {
   //Открываем превью
   const elPreview = cardElement.querySelector('.element__img_preview');
   elPreview.addEventListener('click', (evt) => {
-    popupPreviewTuggle.classList.toggle('popup_opened');
     popupImg.src = evt.target.closest('.element__img').src;
     popupImg.alt = evt.target.closest('.element__img').alt;
     popupSubtitle.textContent = evt.target.closest('.element__img').alt;
-    document.addEventListener('keydown', clickEscToClose),
-      document.addEventListener('mousedown', clickOverlayToClose);
+    openPopup(popupPreviewTuggle);
   });
 
   //Кнопка удаления карточки
@@ -132,13 +133,14 @@ function createCardSaver(evt) {
   evt.preventDefault();
   addCardOnPage();
   closePopup(popupCreateTuggle);
+  resetFormFields(popupCreateTuggle);
 }
 
 //Загружаем в карточки данные из массива
 initialCards.forEach((card) => elements.append(createCard(card.name, card.link)));
 
 //объявляем события по нажатию кнопок
-profileInput.addEventListener('submit', profileSubmitHander);
+formProfile.addEventListener('submit', profileSubmitHander);
 formAdd.addEventListener('submit', createCardSaver);
 popupCreateExitBtn.addEventListener('click', () => { closePopup(popupCreateTuggle), resetFormFields(popupCreateTuggle) });
 popupEditExitBtn.addEventListener('click', () => { resetFormFields(popupProfileTuggle), closePopup(popupProfileTuggle) });
