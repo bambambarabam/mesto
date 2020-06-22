@@ -64,10 +64,10 @@ function closePopup(popup) {
 //Закрываем попап по клику на оверлей
 function clickOverlayToClose(evt) {
   if (evt.target.matches('.popup')) {
-    const opened_popup = document.querySelector('.popup_opened');
-    if (opened_popup) {
-      closePopup(opened_popup),
-        resetFormFields(opened_popup);
+    const openedPopup = document.querySelector('.popup_opened');
+    if (openedPopup) {
+      closePopup(openedPopup),
+        resetFormFields(openedPopup);
     }
   }
 }
