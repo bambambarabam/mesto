@@ -1,3 +1,5 @@
+import { Card } from './Card.js';
+
 const container = document.querySelector('.page');
 const popupPreviewTuggle = container.querySelector('.popup_preview');
 const popupCreateTuggle = container.querySelector('.popup_add');
@@ -6,8 +8,6 @@ const popupCreateBtn = container.querySelector('.popup__create');
 const popupEditExitBtn = container.querySelector('.popup__close_edit');
 const popupCreateExitBtn = container.querySelector('.popup__close_add');
 const popupPreviewExitBtn = container.querySelector('.popup__close_preview');
-const popupSubtitle = container.querySelector('.popup__subtitle');
-const popupImg = container.querySelector('.popup__image');
 const popup = document.querySelector('.popup');
 
 //объявляем константы для полей ввода
@@ -22,8 +22,8 @@ const profileBtn = container.querySelector('.profile__edit');
 const profileTitle = container.querySelector('.profile__title');
 const profileSubitle = container.querySelector('.profile__subtitle');
 const createBtn = container.querySelector('.profile__button');
-const elements = document.querySelector('.elements');
-const cardElementTemplate = document.querySelector('.template__item').content;
+const cardElementTemplate = document.querySelector('.template__item');
+
 
 //Заполняем поля профиля из попапа
 function fillTheProfileFields() {
@@ -47,7 +47,7 @@ function resetFormFields(popup) {
 }
 
 //Открываем попап и назначаем слушатели на закрытие по оверлею и Esc
-function openPopup(popup) {
+export function openPopup(popup) {
   formAdd.reset();
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', clickEscToClose);
@@ -91,41 +91,48 @@ function profileSubmitHander(evt) {
   closePopup(popupProfileTuggle);
 }
 
-//Создаем карточку из шаблона
-function createCard(name, link) {
-  const cardElement = cardElementTemplate.cloneNode(true);
-  const linkInput = cardElement.querySelector('.element__img_add');
-  const titleInput = cardElement.querySelector('.element__header_add');
-  linkInput.src = link;
-  linkInput.alt = name;
-  titleInput.textContent = name;
+const initialCards = [
+  {
+    name: 'Онежское озеро',
+    link: 'https://images.unsplash.com/photo-1543699936-c901ddbf0c05?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=633&q=80'
+  },
+  {
+    name: 'Тулиновка',
+    link: 'https://images.unsplash.com/photo-1516128935666-9742cf27e24c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80'
+  },
+  {
+    name: 'Выборг',
+    link: 'https://images.unsplash.com/photo-1536012354193-8bb300dc3ce6?ixlib=rb-1.2.1&auto=format&fit=crop&w=676&q=80'
+  },
+  {
+    name: 'Хийденсельга',
+    link: 'https://images.unsplash.com/photo-1559029884-e95924923629?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'
+  },
+  {
+    name: 'Самарская лука',
+    link: 'https://images.unsplash.com/photo-1579987801223-f3823e4f536b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80'
+  },
+  {
+    name: 'Ладога',
+    link: 'https://images.unsplash.com/photo-1547846218-c982107d30f2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1286&q=80'
+  }
+];
 
-  //Добавляем в избранное
-  const favButton = cardElement.querySelector('.element__fav');
-  favButton.addEventListener('click', (evt) => {
-    evt.target.classList.toggle('element__fav_active');
-  });
+initialCards.forEach((item) => {
+  const card = new Card(item.name, item.link, cardElementTemplate);
+  const cardElement = card.renderCard();
+  const elements = document.querySelector('.elements');
+  elements.append(cardElement);
+});
 
-  //Открываем превью
-  const elPreview = cardElement.querySelector('.element__img_preview');
-  elPreview.addEventListener('click', (evt) => {
-    popupImg.src = evt.target.closest('.element__img').src;
-    popupImg.alt = evt.target.closest('.element__img').alt;
-    popupSubtitle.textContent = evt.target.closest('.element__img').alt;
-    openPopup(popupPreviewTuggle);
-  });
-
-  //Кнопка удаления карточки
-  const delButton = cardElement.querySelector('.element__del');
-  delButton.addEventListener('click', (evt) => {
-    evt.target.closest('.element').remove();
-  });
-  return cardElement;
-}
-
-//Создаем новую карточку по данным из формы
 function addCardOnPage() {
-  elements.prepend(createCard(placenameValue.value, linkValue.value));
+  const card = new Card(
+    placenameValue.value, linkValue.value, cardElementTemplate
+  );
+  console.log(link.value)
+  const cardElement = card.renderCard();
+  const elements = document.querySelector('.elements');
+  elements.prepend(cardElement);
 }
 
 //Сохраненяем новую карточку
@@ -135,9 +142,6 @@ function createCardSaver(evt) {
   closePopup(popupCreateTuggle);
   resetFormFields(popupCreateTuggle);
 }
-
-//Загружаем в карточки данные из массива
-initialCards.forEach((card) => elements.append(createCard(card.name, card.link)));
 
 //объявляем события по нажатию кнопок
 formProfile.addEventListener('submit', profileSubmitHander);
