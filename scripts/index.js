@@ -1,16 +1,50 @@
 import { Card } from './Card.js';
+import FormValidator from './FormValidator.js'
+
+const initialCards = [
+  {
+    name: 'Онежское озеро',
+    link: 'https://images.unsplash.com/photo-1543699936-c901ddbf0c05?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=633&q=80'
+  },
+  {
+    name: 'Тулиновка',
+    link: 'https://images.unsplash.com/photo-1516128935666-9742cf27e24c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80'
+  },
+  {
+    name: 'Выборг',
+    link: 'https://images.unsplash.com/photo-1536012354193-8bb300dc3ce6?ixlib=rb-1.2.1&auto=format&fit=crop&w=676&q=80'
+  },
+  {
+    name: 'Хийденсельга',
+    link: 'https://images.unsplash.com/photo-1559029884-e95924923629?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'
+  },
+  {
+    name: 'Самарская лука',
+    link: 'https://images.unsplash.com/photo-1579987801223-f3823e4f536b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80'
+  },
+  {
+    name: 'Ладога',
+    link: 'https://images.unsplash.com/photo-1547846218-c982107d30f2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1286&q=80'
+  }
+];
+
+const validObject = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+}
 
 const container = document.querySelector('.page');
 const popupPreviewTuggle = container.querySelector('.popup_preview');
 const popupCreateTuggle = container.querySelector('.popup_add');
 const popupProfileTuggle = container.querySelector('.popup_info');
-const popupCreateBtn = container.querySelector('.popup__create');
 const popupEditExitBtn = container.querySelector('.popup__close_edit');
 const popupCreateExitBtn = container.querySelector('.popup__close_add');
 const popupPreviewExitBtn = container.querySelector('.popup__close_preview');
-const popup = document.querySelector('.popup');
 
-//объявляем константы для полей ввода
 const formAdd = document.forms['popup_add'];
 const formProfile = document.forms['form_profile_name'];
 const nameInput = formProfile.name;
@@ -91,33 +125,7 @@ function profileSubmitHander(evt) {
   closePopup(popupProfileTuggle);
 }
 
-const initialCards = [
-  {
-    name: 'Онежское озеро',
-    link: 'https://images.unsplash.com/photo-1543699936-c901ddbf0c05?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=633&q=80'
-  },
-  {
-    name: 'Тулиновка',
-    link: 'https://images.unsplash.com/photo-1516128935666-9742cf27e24c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=675&q=80'
-  },
-  {
-    name: 'Выборг',
-    link: 'https://images.unsplash.com/photo-1536012354193-8bb300dc3ce6?ixlib=rb-1.2.1&auto=format&fit=crop&w=676&q=80'
-  },
-  {
-    name: 'Хийденсельга',
-    link: 'https://images.unsplash.com/photo-1559029884-e95924923629?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80'
-  },
-  {
-    name: 'Самарская лука',
-    link: 'https://images.unsplash.com/photo-1579987801223-f3823e4f536b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80'
-  },
-  {
-    name: 'Ладога',
-    link: 'https://images.unsplash.com/photo-1547846218-c982107d30f2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1286&q=80'
-  }
-];
-
+//Рендерим элементы шаблона
 initialCards.forEach((item) => {
   const card = new Card(item.name, item.link, cardElementTemplate);
   const cardElement = card.renderCard();
@@ -125,11 +133,11 @@ initialCards.forEach((item) => {
   elements.append(cardElement);
 });
 
+//Добавляем элементы на страницу
 function addCardOnPage() {
   const card = new Card(
     placenameValue.value, linkValue.value, cardElementTemplate
   );
-  console.log(link.value)
   const cardElement = card.renderCard();
   const elements = document.querySelector('.elements');
   elements.prepend(cardElement);
@@ -146,8 +154,30 @@ function createCardSaver(evt) {
 //объявляем события по нажатию кнопок
 formProfile.addEventListener('submit', profileSubmitHander);
 formAdd.addEventListener('submit', createCardSaver);
-popupCreateExitBtn.addEventListener('click', () => { closePopup(popupCreateTuggle), resetFormFields(popupCreateTuggle) });
-popupEditExitBtn.addEventListener('click', () => { resetFormFields(popupProfileTuggle), closePopup(popupProfileTuggle) });
-profileBtn.addEventListener('click', () => { openPopup(popupProfileTuggle), fillTheProfileFields() });
-createBtn.addEventListener('click', () => { openPopup(popupCreateTuggle) });
 popupPreviewExitBtn.addEventListener('click', () => { closePopup(popupPreviewTuggle) });
+
+popupCreateExitBtn.addEventListener('click', () => {
+  closePopup(popupCreateTuggle),
+    resetFormFields(popupCreateTuggle);
+});
+
+popupEditExitBtn.addEventListener('click', () => {
+  resetFormFields(popupProfileTuggle),
+    closePopup(popupProfileTuggle)
+});
+
+//Вызываем валидатор для формы профиля
+profileBtn.addEventListener('click', () => {
+  const editFormValidator = new FormValidator(validObject, popupProfileTuggle);
+  editFormValidator.enableValidation();
+  openPopup(popupProfileTuggle),
+    fillTheProfileFields()
+});
+
+//Вызываем валидатор для формы добавления
+createBtn.addEventListener('click', () => {
+  const addFormValidator = new FormValidator(validObject, popupCreateTuggle);
+  addFormValidator.enableValidation();
+  openPopup(popupCreateTuggle)
+});
+
