@@ -1,9 +1,9 @@
 import { openPopup } from './index.js';
 
 export class Card {
-  constructor(name, link, cardElementTemplate) {
-    this._name = name;
-    this._link = link;
+  constructor(data, cardElementTemplate) {
+    this._name = data.name;
+    this._link = data.link;
     this._cardElementTemplate = cardElementTemplate;
   }
 
@@ -23,7 +23,7 @@ export class Card {
 
   _delCard(evt) {
     evt.target.closest('.element').remove();
-  }
+   }
 
   _favHandler(evt) {
     evt.target.classList.toggle('element__fav_active');
@@ -45,8 +45,8 @@ export class Card {
       this._getPreview(this._link, this._name);
     });
 
-  this._element.querySelector('.element__fav').addEventListener('mousedown', this._favHandler);
-  this._element.querySelector('.element__del').addEventListener('mousedown', this._delCard);
+    this._element.querySelector('.element__fav').addEventListener('mousedown', this._favHandler);
+    this._element.querySelector('.element__del').addEventListener('mousedown', this._delCard);
   }
 }
 

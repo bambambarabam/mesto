@@ -127,7 +127,7 @@ function profileSubmitHander(evt) {
 
 //Рендерим элементы шаблона
 initialCards.forEach((item) => {
-  const card = new Card(item.name, item.link, cardElementTemplate);
+  const card = new Card(item, cardElementTemplate);
   const cardElement = card.renderCard();
   const elements = document.querySelector('.elements');
   elements.append(cardElement);
