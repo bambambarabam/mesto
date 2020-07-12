@@ -33,6 +33,6 @@
 
 * [Ссылка на макет](https://www.figma.com/file/uyE0hmyYWC6NE9Lt8wgc0H/JavaScript.-Sprint-5?node-id=3%3A279)
 
-[Перейти на сайт](https://bambambarabam.github.io/mesto/)
+[Перейти на сайт](https://bambambarabam.github.io/mesto/docs/index.html)
 
 Спасибо за внимание!
