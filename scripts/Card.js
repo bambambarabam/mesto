@@ -8,7 +8,10 @@ export class Card {
   }
 
   _getTemplate() {
-    const cardElement = this._cardElementTemplate.content.cloneNode(true).children[0];
+    const cardElement = this._cardElementTemplate
+    .content
+    .cloneNode(true)
+    .children[0];
     return cardElement;
   }
 
