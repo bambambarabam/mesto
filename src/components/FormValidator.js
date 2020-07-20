@@ -50,6 +50,11 @@ export default class FormValidator {
     error.classList.add(this._errorClass);
   }
 
+  disableButton(buttonElement) {
+    buttonElement.classList.add(this._inactiveButtonClass);
+    buttonElement.disabled = true;
+  }
+
   _handleInput(input, errorElement) {
     !input.checkValidity() ? this._enableError(input, errorElement, this._inputErrorClass, this._errorClass) : this._disableError(input, errorElement, this._inputErrorClass, this._errorClass);
   }
