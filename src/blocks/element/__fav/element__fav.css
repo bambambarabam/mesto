@@ -7,7 +7,6 @@
   border: none;
   cursor: pointer;
   outline: none;
-  margin: auto 20px 30px auto;
   transition: opacity 1s linear .1s;
 }
 
