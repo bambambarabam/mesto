@@ -10,6 +10,7 @@
 @import url(./__error/popup__error.css);
 @import url(./__input/_type_error/popup__input_type_error.css);
 @import url(./__button/_disabled/popup__button_disabled.css);
+@import url(./__button/_confirm/popup__button_confirm.css);
 
 .popup {
   min-width: 1280px;

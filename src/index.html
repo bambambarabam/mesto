@@ -21,7 +21,10 @@
     <main class="content">
 
       <section class="profile">
-        <img src="./images/icon.jpg" class="profile__avatar" alt="Аватар пользователя.">
+        <div class="profile__avatar-container">
+          <img src="./images/icon.jpg" class="profile__avatar" alt="Аватар пользователя.">
+          <div class="profile__avatar-edit"></div>
+        </div>
         <div class="profile__info">
           <div class="profile__name">
             <h1 class="profile__title">Жак-Ив Кусто</h1>
@@ -38,7 +41,7 @@
       <!-- Выше фото-сетка -->
 
       <section class="popup popup_info">
-        <form class="popup__form" name="form_profile_name" method="get" action="#" novalidate>
+        <form class="popup__form" name="form_profile_name" novalidate>
           <h2 class="popup__name">Редактировать профиль</h2>
 
           <input type="text" value="" placeholder="Ваше имя" class="popup__input" name="name" minlength="2"
@@ -55,15 +58,37 @@
       </section>
       <!-- Выше блок с всплывающим окном для редактирования профиля-->
 
+      <section class="popup popup_avatar">
+        <form class="popup__form" name="popup_avatar" novalidate>
+          <h2 class="popup__name">Обновить аватар</h2>
+
+          <input type="url" value="" placeholder="Ссылка на картинку" class="popup__input" name="link" id="link"
+            required>
+          <span class="popup__error" id="link-error"></span>
+
+          <button class="popup__button popup__create_avatar popup__button_disabled" type="submit">Создать</button>
+          <button aria-label="Закрыть" class="popup__close popup__close_add" type="button"></button>
+        </form>
+      </section>
+
+      <section class="popup popup_confirm">
+        <form class="popup__form" name="popup_confirm" novalidate>
+          <h2 class="popup__name">Вы уверены?</h2>
+          <button class="popup__button popup__button_confirm" type="submit">Да</button>
+          <button aria-label="Закрыть" class="popup__close popup__close_add" type="button"></button>
+        </form>
+      </section>
+
       <section class="popup popup_add">
-        <form class="popup__form" name="popup_add" method="get" action="#" novalidate>
+        <form class="popup__form" name="popup_add" novalidate>
           <h2 class="popup__name">Новое место</h2>
 
           <input type="text" value="" placeholder="Название" class="popup__input" name="placename" minlength="1"
             maxlength="30" id="placename" required>
           <span class="popup__error" id="placename-error"></span>
 
-          <input type="url" value="" placeholder="Ссылка на картинку" class="popup__input" name="link" id="link"required>
+          <input type="url" value="" placeholder="Ссылка на картинку" class="popup__input" name="link" id="link"
+            required>
           <span class="popup__error" id="link-error"></span>
 
           <button class="popup__button popup__create popup__button_disabled" type="submit">Создать</button>
@@ -94,7 +119,10 @@
       <img class="element__img element__img_add element__img_preview">
       <button aria-label="Удалить" class="element__del" type="button"></button>
       <h2 class="element__header element__header_add"></h2>
-      <button aria-label="В избранное" class="element__fav" type="button"></button>
+      <div class="element__fav-container">
+        <button aria-label="В избранное" class="element__fav" type="button"></button>
+        <p class="element__fav-count">0</p>
+      </div>
     </div>
   </template>
 
