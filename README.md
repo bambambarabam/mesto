@@ -35,6 +35,6 @@
 
 * [Ссылка на макет](https://www.figma.com/file/uyE0hmyYWC6NE9Lt8wgc0H/JavaScript.-Sprint-5?node-id=3%3A279)
 
-<a href="https://bambambarabam.github.io/mesto/docs/index.html" target="_blank">Перейти на сайт</a>
+<a href="https://bambambarabam.github.io/mesto/" target="_blank">Перейти на сайт</a>
 
 Спасибо за внимание!
