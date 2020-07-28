@@ -97,10 +97,12 @@ Promise.all([
             api.removeCard(item._id)
               .then(() => {
                 card.delCard();
-                popupConfirm.close();
               })
               .catch((err) => {
                 console.log(err);
+              })
+              .finally(() => {
+                popupConfirm.close();
               })
             popupConfirm.setEventListeners();
           })
@@ -117,13 +119,13 @@ Promise.all([
         api.addNewCard(placenameValue.value, linkValue.value)
           .then((item) => {
             displayCards(item);
-            formImage.close();
           })
           .catch((err) => {
             console.log(err);
           })
           .finally(() => {
             formImage.loading(false);
+            formImage.close();
           })
       }
     })
@@ -149,13 +151,13 @@ const popupEdit = new PopupWithForm({
     api.editUserInfo(data.name, data.job)
       .then((data) => {
         userInfo.setUserInfo(data);
-        popupEdit.close();
       })
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
         popupEdit.loading(false);
+        popupEdit.close();
       })
   }
 })
@@ -163,8 +165,9 @@ const popupEdit = new PopupWithForm({
 popupEdit.setEventListeners();
 
 profileBtn.addEventListener('mousedown', () => {
-  nameInput.value = userInfo.getUserInfo().name;
-  jobInput.value = userInfo.getUserInfo().job;
+  const info = userInfo.getUserInfo();
+  nameInput.value = info.name;
+  jobInput.value = info.job;
   popupEdit.open();
 });
 
@@ -175,13 +178,13 @@ const formAvatar = new PopupWithForm({
     api.editAvatar(data.link)
       .then((data) => {
         userInfo.setUserAvatar(data);
-        formAvatar.close();
       })
       .catch((err) => {
         console.log(err);
       })
       .finally(() => {
         formAvatar.loading(false);
+        formAvatar.close();
       })
   }
 })
