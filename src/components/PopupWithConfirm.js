@@ -11,10 +11,6 @@ export default class PopupWithConfirm extends Popup {
     this._handleSubmit = removeCard;
   }
 
-  setEventListeners() {
-    super.setEventListeners();
-  }
-
   _popupWithConfirm(evt) {
     evt.preventDefault();
     this._handleSubmit();
