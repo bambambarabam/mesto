@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   entry: { main: './src/pages/index.js' },
@@ -9,38 +10,35 @@ module.exports = {
     filename: 'main.js'
   },
   mode: 'development',
-
+  devServer: {
+    contentBase: path.resolve(__dirname, './dist'),
+    compress: true,
+    port: 8081,
+    open: true
+  },
   module: {
     rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        use: 'babel-loader',
         exclude: '/node_modules/'
       },
       {
+        // применять это правило только к CSS-файлам
         test: /\.css$/,
-        loader: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1
-            }
-          },
-          'postcss-loader'
-        ],
+        // при обработке этих файлов нужно использовать
+        // MiniCssExtractPlugin.loader и css-loader
+        use: [MiniCssExtractPlugin.loader, {
+          loader: 'css-loader',
+          options: { importLoaders: 1 }
+
+        },
+        'postcss-loader']
       },
       {
-        test: /\.html$/,
-        loader: 'html-loader',
-      },
-      {
-        test: /\.(png|svg|jpg|gif)$/,
-        loader: 'file-loader?name=./images/[name].[ext]'
-      },
-      {
-        test: /\.(woff|woff2|ttf)$/,
-        loader: 'file-loader?name=./fonts/[name].[ext]'
+        // регулярное выражение, которое ищет все файлы с такими расширениями
+        test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
+        type: 'asset/resource'
       },
     ]
   },
@@ -48,6 +46,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html'
     }),
+    new CleanWebpackPlugin(),
     new MiniCssExtractPlugin()
   ]
 };
