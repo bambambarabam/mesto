@@ -7,13 +7,14 @@ module.exports = {
   entry: { main: './src/pages/index.js' },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js'
+    filename: 'main.js',
+    publicPath: ''
   },
   mode: 'development',
   devServer: {
-    contentBase: path.resolve(__dirname, './dist'),
+    static: path.resolve(__dirname, './dist'),
     compress: true,
-    port: 8081,
+    port: 8080,
     open: true
   },
   module: {
@@ -24,22 +25,21 @@ module.exports = {
         exclude: '/node_modules/'
       },
       {
-        // применять это правило только к CSS-файлам
         test: /\.css$/,
-        // при обработке этих файлов нужно использовать
-        // MiniCssExtractPlugin.loader и css-loader
-        use: [MiniCssExtractPlugin.loader, {
-          loader: 'css-loader',
-          options: { importLoaders: 1 }
-
-        },
-        'postcss-loader']
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader'
+        ],
       },
       {
-        // регулярное выражение, которое ищет все файлы с такими расширениями
+        test: /\.html$/,
+        use: 'html-loader',
+      },
+      {
         test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
         type: 'asset/resource'
-      },
+      }
     ]
   },
   plugins: [
